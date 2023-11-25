@@ -5,28 +5,16 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
 
 console.log(galleryItems);
+const myList = document.querySelector('ul.gallery');
 
-
-// Change code below this line
-const container = document.querySelector('.gallery');
-//console.log(galleryItems)
-const markGallery = galleryItems
+const markup = galleryItems
   .map(
-    ({ preview, original, description }) =>
-      `<li class="galery__item"> 
-        <a class = "image__link" href = "${original}" >
-    <img class = "gallery__image" src= "${preview}" 
-    alt = "${description}" 
-     />
-    </a>
-    </li>`
+    galleryItems =>
+      `<li class="gallery__item"><a class="gallery__link" href=${galleryItems.original} ><img class="gallery__image" src = ${galleryItems.preview} alt = ${galleryItems.description} /> </a></li>`
   )
   .join('');
-container.insertAdjacentHTML('beforeend', markGallery);
-var lightbox = new SimpleLightbox('.gallery a', {
+myList.insertAdjacentHTML('beforeend', markup);
+const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
-  captionsType: 'alt',
-  captionDelay: 250,
-  captionPosition: 'bottom',
+  captionDelay: '250',
 });
-console.log(galleryItems);
